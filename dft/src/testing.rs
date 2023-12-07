@@ -1,9 +1,28 @@
+use alloc::vec::Vec;
+
 use p3_field::TwoAdicField;
 use p3_matrix::dense::RowMajorMatrix;
 use rand::distributions::{Distribution, Standard};
 use rand::thread_rng;
 
 use crate::{NaiveDft, TwoAdicSubgroupDft};
+
+pub(crate) fn test_one_dim_dft_matches_naive<F, Dft>()
+where
+    F: TwoAdicField,
+    Standard: Distribution<F>,
+    Dft: TwoAdicSubgroupDft<F>,
+{
+    let dft = Dft::default();
+    let mut rng = thread_rng();
+    for log_h in 0..5 {
+        let h = 1 << log_h;
+        let mat = RowMajorMatrix::<F>::rand(&mut rng, 1, h);
+        let dft_naive: Vec<F> = NaiveDft.dft(mat.clone().values);
+        let dft_result = dft.dft(mat.values);
+        assert_eq!(dft_naive, dft_result);
+    }
+}
 
 pub(crate) fn test_dft_matches_naive<F, Dft>()
 where

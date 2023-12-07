@@ -9,6 +9,7 @@ mod naive;
 mod radix_2_bowers;
 mod radix_2_dit;
 mod radix_2_dit_parallel;
+mod radix_2_dit_parallel_transpose;
 #[cfg(test)]
 mod testing;
 mod traits;
@@ -18,5 +19,6 @@ pub use naive::*;
 pub use radix_2_bowers::*;
 pub use radix_2_dit::*;
 pub use radix_2_dit_parallel::*;
+pub use radix_2_dit_parallel_transpose::Radix2DitParallelTranspose;
 pub use traits::*;
 pub use util::*;
