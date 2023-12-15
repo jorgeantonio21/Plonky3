@@ -8,7 +8,7 @@ use crate::{Radix2Dit, TwoAdicSubgroupDft};
 #[derive(Default, Clone)]
 pub struct Radix2DitParallelTranspose {}
 
-/// A parallel FFT algorithm which uses a parallelizable cache-friendly matrix transposition implementation.
+/// A parallel FFT algorithm which uses a parallelize cache-friendly matrix transposition implementation.
 ///
 /// We compute a FFT algorithm over the columns of the original matrix.
 impl<F: TwoAdicField> TwoAdicSubgroupDft<F> for Radix2DitParallelTranspose {
